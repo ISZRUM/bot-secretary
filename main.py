@@ -11,6 +11,9 @@ from linebot.models import (
 )
 import os
 
+#Want add event here write
+#import event
+
 app = Flask(__name__)
 
 #環境変数取得
