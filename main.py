@@ -44,6 +44,19 @@ def handle_message(event):
         event.reply_token,
         TextSendMessage(text=event.message.text))
 
+@handler.add(FollowEvent)
+def on_follow(event):
+    reply_token = event.reply_token
+    user_id = event.source.user_id
+    profiles = line_bot_api.get_profile(user_id=user_id)
+    display_name = profiles.display_name
+    picture_url = profiles.picture_url
+    status_message = profiles.status_message
+
+    line_bot_api.reply_message(
+        reply_token = reply_token,
+        messages = TextSendMessage(text = 'こんにちは！' + display_name + 'さん！')
+    )
 
 if __name__ == "__main__":
 #    app.run()
