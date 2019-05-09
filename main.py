@@ -43,10 +43,10 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    event.reply_token.user_id = 'Uc9dc450cc954cb97ae0a461a84f5d165'
+    reply_my_token = str(event.reply_token)
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text)
+        TextSendMessage(text=event.message.text + reply_my_token)
     )
 
 @handler.add(FollowEvent)
