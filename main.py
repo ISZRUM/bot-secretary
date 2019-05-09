@@ -4,7 +4,7 @@ from linebot import (
     LineBotApi, WebhookHandler
 )
 from linebot.exceptions import (
-    InvalidSignatureError
+    InvalidSignatureError, LineBotApiError
 )
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, FollowEvent
@@ -43,10 +43,11 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    my_reply = str(event.source.user_id)
+    event.reply_token.user_id = 'Uc9dc450cc954cb97ae0a461a84f5d165'
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text + my_reply))
+        TextSendMessage(text=event.message.text)
+    )
 
 @handler.add(FollowEvent)
 def on_follow(event):
@@ -54,7 +55,7 @@ def on_follow(event):
     user_id = event.source.user_id
     profiles = line_bot_api.get_profile(user_id=user_id)
     display_name = profiles.display_name
-
+    line_bot_api
     line_bot_api.reply_message(
         reply_token = reply_token,
         messages = TextSendMessage(text = 'こんにちは！' + display_name + 'さん！')
