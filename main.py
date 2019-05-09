@@ -12,7 +12,7 @@ from linebot.models import (
 import os
 
 #Want add event here write
-#import event
+#import Fanction_List
 
 app = Flask(__name__)
 
